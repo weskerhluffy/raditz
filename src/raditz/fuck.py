@@ -1,13 +1,6 @@
 '''
 Created on 07/12/2016
 
-@author:
-'''
-
-
-'''
-Created on 07/12/2016
-
 @author: 
 '''
 import logging
@@ -66,12 +59,18 @@ def raditz_main():
     lineas = list(sys.stdin)
     numeros = []
     
-    linea = lineas[1]
-    numeros = [int(x) for x in linea.strip().split(" ")]
+    if(len(lineas)<3):
+        linea = lineas[1]
+        numeros = [int(x) for x in linea.strip().split(" ")]
+        
+    else:
+        for linea in lineas[1:]:
+            numeros.append(int(linea.strip().split(" ")[0]))
         
     logger_cagada.debug("los putos numeros %s" % numeros)
     
     ass = raditz_core(numeros)
+
     print("[%s]" % (",".join([str(x) for x in ass])))
     
 
@@ -81,3 +80,4 @@ if __name__ == '__main__':
         logger_cagada = logging.getLogger("asa")
         logger_cagada.setLevel(nivel_log)   
         raditz_main()
+
